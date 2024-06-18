@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee CRUD</title>
+    <link rel="stylesheet" href="{% static 'employee_register/css/bootstrap.css' %}">
+
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center alert alert-danger">Employee Register</h2>
+        
+    {% block content %}
+    {% endblock content %}
+
+
+
+   <script src="{% static 'employee_register/js/jquery.js' %}"></script>
+    <script src="{% static 'employee_register/js/popper.js' %}"></script>
+    <script src="{% static 'employee_register/js/bootstrap.js' %}"></script>
+</body>
+</html>
