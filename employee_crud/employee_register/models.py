@@ -11,5 +11,5 @@ class Position(models.Model):
 class Employee(models.Model):
     name = models.CharField(max_length=100)
     emp_code = models.CharField(max_length=3)
-    mobile = models.IntegerField(max_length=15)
+    mobile = models.IntegerField()
     position = models.ForeignKey(Position, on_delete=models.CASCADE)
