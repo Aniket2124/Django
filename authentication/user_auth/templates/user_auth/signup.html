@@ -1,0 +1,24 @@
+{% extends 'user_auth/base.html' %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    {% for fm in form %}
+        {{fm.label_tag}}{{fm}}{{fm.errors|striptags}} <br><br>
+
+    {% endfor %}
+    
+    <input type="submit" value="Submit">
+
+</form>
+<a href="{% url 'login' %}">login</a>
+
+{% if messages %}
+{% for message in messages %}
+<small {% if message.tags %} class="{{message.tags}}"{% endif %}>{{message}}</small>
+{% endfor %}
+{% endif %}
+
+
+
+
+{% endblock content %}
