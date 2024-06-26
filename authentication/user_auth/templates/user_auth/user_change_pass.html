@@ -1,0 +1,24 @@
+{% extends 'user_auth/base.html' %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            {{ error }}
+        {% endfor %}
+    {% endif %}
+
+
+
+
+    {% for fm in form %}
+        {{fm.label_tag}}{{fm}}{{fm.errors|striptags}} <br><br>
+
+    {% endfor %}
+    
+    <input type="submit" value="Change Password">
+
+</form>
+
+<a href="{% url 'profile' %}">Back To Profile</a>
+{% endblock content %}

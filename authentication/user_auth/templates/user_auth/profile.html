@@ -1,11 +1,23 @@
 {% extends 'user_auth/base.html' %}
 {% block content %}
 <h1>Welcome {{name}}</h1>
+<form action="" method="post">
+    {% csrf_token %}
 {% if messages %}
 {% for message in messages %}
 <small {% if message.tags %} class="{{message.tags}}"{% endif %}>{{message}}</small>
 {% endfor %}
 {% endif %}
 
+{% for fm in form %}
+        {{fm.label_tag}}{{fm}}{{fm.errors|striptags}} <br><br>
+
+    {% endfor %}    
+    <input type="submit" value="save">
+
+</form>
+
 <a href="{% url 'logout' %}">logout</a>
+<a href="{% url 'change_pass' %}">Change Password</a>
+<a href="{% url 'change_pass1' %}">Change Password1</a>
 {% endblock content %}

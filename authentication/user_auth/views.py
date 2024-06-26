@@ -1,8 +1,8 @@
 from django.shortcuts import render, HttpResponseRedirect
-from .forms import SignUpForm
+from .forms import SignUpForm, EditUserProfileForm
 from django.contrib import messages
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm,SetPasswordForm, UserChangeForm
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 
 # Create your views here.
 def signup(request):
@@ -37,10 +37,48 @@ def user_login(request):
 
 def profile(request):
     if request.user.is_authenticated:
-        return render(request,'user_auth/profile.html',{'name':request.user})
+        if request.method == "POST":
+            fm = EditUserProfileForm(request.POST, instance = request.user)
+            if fm.is_valid():
+                fm.save()
+                return HttpResponseRedirect('/profile/')
+        else:
+            fm = EditUserProfileForm(instance = request.user)
+        return render(request,'user_auth/profile.html',{'name':request.user, 'form':fm})
     else:
         return HttpResponseRedirect('/login/')
 
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/login/')
+
+def user_change_pass(request):  
+    if request.user.is_authenticated:  
+        if request.method == "POST":
+            fm = PasswordChangeForm(user=request.user, data=request.POST)
+            if fm.is_valid():
+                fm.save()
+                update_session_auth_hash(request, fm.user)
+                return HttpResponseRedirect('/profile/')
+        else:
+            fm = PasswordChangeForm(user=request.user)       
+        return render(request, 'user_auth/user_change_pass.html', {'form':fm})
+    else:
+        return HttpResponseRedirect('/login/')
+
+
+def user_change_pass1(request):  
+    if request.user.is_authenticated:  
+        if request.method == "POST":
+            fm = SetPasswordForm(user=request.user, data=request.POST)
+            if fm.is_valid():
+                fm.save()
+                update_session_auth_hash(request, fm.user)
+                return HttpResponseRedirect('/profile/')
+        else:
+            fm = SetPasswordForm(user=request.user)       
+        return render(request, 'user_auth/user_change_pass.html', {'form':fm})
+    else:
+        return HttpResponseRedirect('/login/')
+    
+    
