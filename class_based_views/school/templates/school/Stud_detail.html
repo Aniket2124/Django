@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student List</title>
+    <title>Detail</title>
 </head>
 <body>
-    {% for list in school_list %}
-    <a href="{% url 'detail' list.id %}">{{list.name}}</a>
-    {{list.roll}}
-    {{list.course}}<br>
-    {% endfor %}
+    <h1>Student Detail</h1>
+    {{school.id}}
+    {{school.name}}
+    {{school.roll}}
+    {{school.course}}
     <hr>
-    {% for list in fresher %}
+    {% for list in all_data %}
+    <a href="{% url 'detail' list.id %}">{{list.roll}}</a>
     {{list.name}}
-    {{list.roll}}
     {{list.course}}<br>
     {% endfor %}
 </body>
