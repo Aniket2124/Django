@@ -1,0 +1,15 @@
+{% extends 'apps/base.html' %}
+{% block title %} Profile {% endblock title %}
+
+{% block content %}
+<div class="row justify-content-md-center">
+    <form action="" method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Save" class="btn btn-success">
+        <a href="{% url 'blog_post' %}" class="btn btn-primary mt-1">Create Blog</a>
+        <a href="{% url 'logout' %}" class="btn btn-danger mt-1">Logout</a>
+        <a href="{% url 'details' %}" class="btn btn-danger mt-1">Home</a>
+    </form>
+</div>
+{% endblock content %}

@@ -1,0 +1,16 @@
+{% extends 'apps/base.html' %}
+{% block title %} Login {% endblock title %}
+
+{% block content %}
+<div class="row justify-content-md-center">
+    <div class="col-4">
+
+        <form action="" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Login" class="btn btn-success"><br>
+            <a href="{% url 'register' %}" class="btn btn-primary mt-2">Signup</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

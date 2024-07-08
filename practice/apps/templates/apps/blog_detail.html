@@ -1,0 +1,21 @@
+{% extends 'apps/base.html' %}
+{% block title %} Blog Details {% endblock title %}
+
+{% block content %}
+<div class="row">
+{% for blog_detail in blog %}
+<div class="col-sm-7 offset-1">
+<ul><strong>TITLE</strong>: {{blog_detail.title}}</ul>
+<ul><strong>AUTHOR:</strong> {{blog_detail.author}}</ul>
+<ul><strong>CONTENT:</strong> {{blog_detail.content}}</ul>
+<ul><strong>CREATED:</strong> {{blog_detail.creation_date}}</ul>
+<ul><strong>PUBLISHED:</strong> {{blog_detail.published_date}}</ul>
+
+</div>
+<div class="col-4"><img src="/media/{{blog_detail.image}}" alt="" class="img-fluid"></div>
+<a href="{% url 'update' blog_detail.id %}" class="btn btn-primary col-sm-2 offset-1">Update Blog</a>
+<a href="{% url 'delete_blog' blog_detail.id %}" class="btn btn-danger col-sm-2 offset-1">Delete Blog</a>
+<br><hr>
+{% endfor %}
+</div>
+{% endblock content %}

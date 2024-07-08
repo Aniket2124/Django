@@ -1,0 +1,15 @@
+{% extends 'apps/base.html' %}
+{% block title %} Profile {% endblock title %}
+
+{% block content %}
+<div class="row justify-content-md-center">
+    <div class="col-4">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" value="Save" class="btn btn-success mt-1">
+            <a href="{% url 'profile' %}" class="btn btn-primary mt-1">Back To Profile</a>
+        </form>
+    </div>
+</div>
+{% endblock content %}
